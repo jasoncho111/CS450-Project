@@ -1,6 +1,7 @@
 import './App.css';
 import React, {Component} from 'react';
 import Papa from 'papaparse';
+import Scatterplot3 from './Scatterplot3';
 
 class App extends Component {
   constructor(props) {
@@ -36,8 +37,6 @@ class App extends Component {
 
   componentDidMount() {
     this.readCsv()
-
-    console.log(this.state.data)
   }
 
   render() {
@@ -45,7 +44,7 @@ class App extends Component {
       <div className="App">
         <h1 style={{marginLeft: "20px"}}>CS 450 Project Dashboard</h1>
         <div className="visualizations">
-
+          <Scatterplot3 data={this.state.data} width={600} height={450}></Scatterplot3>
         </div>
       </div>
     );

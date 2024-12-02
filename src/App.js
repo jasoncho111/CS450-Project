@@ -2,6 +2,7 @@ import './App.css';
 import React, {Component} from 'react';
 import Papa from 'papaparse';
 import Scatterplot3 from './Scatterplot3';
+import Scatterplot1 from './Scatterplot1';
 
 class App extends Component {
   constructor(props) {
@@ -44,6 +45,7 @@ class App extends Component {
       <div className="App">
         <h1 style={{marginLeft: "20px"}}>CS 450 Project Dashboard</h1>
         <div className="visualizations">
+          <Scatterplot1 data={this.state.data} width={500} height={300}></Scatterplot1>
           <Scatterplot3 data={this.state.data} width={600} height={450}></Scatterplot3>
         </div>
       </div>

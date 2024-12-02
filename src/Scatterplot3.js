@@ -28,7 +28,7 @@ class Scatterplot3 extends Component {
     var graph = svg.selectAll(".graph").data([null]).join("g").attr("transform", `translate(${margin.left}, ${margin.top})`).attr("class", "graph");
     
     //create axes
-    var xScale = d3.scaleLinear().domain([parseFloat(d3.min(filteredData, d => d.Sleep_Duration)), parseFloat(d3.max(filteredData, d => d.Sleep_Duration))]).range([0, graph_width]);
+    var xScale = d3.scaleLinear().domain([d3.min(filteredData, d => d.Sleep_Duration), d3.max(filteredData, d => d.Sleep_Duration)]).range([0, graph_width]);
     var yScale = d3.scaleLinear().domain([0, 10.5]).range([graph_height, 0]);
 
     svg.selectAll(".x_axis").data([0]).join("g").attr("class", "x_axis").attr("transform", `translate(${margin.left}, ${height - margin.bottom})`).call(d3.axisBottom(xScale));

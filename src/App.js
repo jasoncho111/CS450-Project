@@ -14,8 +14,6 @@ class App extends Component {
   }
 
   readCsv = () => {
-    var csvdata = []
-    
     const csvFilePath = process.env.PUBLIC_URL + '/student_sleep_patterns.csv'
 
     fetch(csvFilePath)
@@ -27,6 +25,24 @@ class App extends Component {
           skipEmptyLines: true,
           complete: (result) => {
             console.log('Parsed Data:', result.data);
+            result.data = result.data.map(d => {
+              return {
+                Student_ID: parseInt(d.Student_ID),
+                Age: parseInt(d.Age),
+                Gender: d.Gender,
+                University_Year: d.University_Year,
+                Sleep_Duration: parseFloat(d.Sleep_Duration),
+                Study_Hours: parseFloat(d.Study_Hours),
+                Screen_Time: parseFloat(d.Screen_Time),
+                Caffeine_Intake: parseInt(d.Caffeine_Intake),
+                Physical_Activity: parseInt(d.Physical_Activity),
+                Sleep_Quality: parseInt(d.Sleep_Quality),
+                Weekday_Sleep_Start: parseFloat(d.Weekday_Sleep_Start),
+                Weekday_Sleep_End: parseFloat(d.Weekday_Sleep_End),
+                Weekend_Sleep_Start: parseFloat(d.Weekend_Sleep_Start),
+                Weekend_Sleep_End: parseFloat(d.Weekend_Sleep_End)
+              }
+            })
             this.setState({ data: result.data });
           },
         });
@@ -34,6 +50,8 @@ class App extends Component {
       .catch((error) => {
         console.error('Error reading the CSV file:', error);
       });
+      
+
   };
 
   componentDidMount() {

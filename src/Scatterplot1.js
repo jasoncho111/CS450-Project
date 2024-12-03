@@ -13,21 +13,16 @@ class Scatterplot1 extends Component{
     };
   }
 
-  handleSliderChange = (event) => {
-    this.setState({ age: event.target.value });
-  }
-
   componentDidMount() {
     if (this.props.data) this.renderChart();
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate() {
     if (this.props.data) this.renderChart();
   }
 
   renderChart = () => {
     const data = this.props.data.filter(d => d.Age >= this.state.ageRange[0] && d.Age <= this.state.ageRange[1]);
-    console.log("Data", data)
   
     const margin = { top: 30, right: 30, bottom: 70, left: 50 };
     const w = this.props.width - margin.left - margin.right;
@@ -41,7 +36,6 @@ class Scatterplot1 extends Component{
 
     // X-Axis
     const x_data = data.map(d => d.Study_Hours);
-    console.log(x_data)
     const x_scale = d3.scaleLinear()
       .domain([Math.floor(d3.min(x_data)), Math.ceil(d3.max(x_data))])
       .range([0, w]);
@@ -130,6 +124,8 @@ class Scatterplot1 extends Component{
       gRange.call(sliderRange);
 
       gRange.selectAll('.tick text').style('opacity', 1);
+
+      d3.select(".scatterplot1").select(".slider-range").selectAll(".slider_label").data([0]).join("text").attr("class", "slider_label").attr("transform", "translate(30, 30)").attr("dominant-baseline", "middle").text("Age:")
   }
   
   render() {
@@ -138,7 +134,6 @@ class Scatterplot1 extends Component{
         <div id="sliderContainer">
           <svg className="slider-range"></svg>
       </div>
-      <br/>
         <svg className="Scatterplot_svg">
           <g className="g_1"></g>
         </svg>

@@ -5,6 +5,7 @@ import Scatterplot3 from './Scatterplot3';
 import Scatterplot1 from './Scatterplot1';
 import StackedBarchart from './StackedBarchart';
 import LineChart from './LineChart';
+import BoxWhisker from './BoxWhisker';
 
 class App extends Component {
   constructor(props) {
@@ -64,11 +65,12 @@ class App extends Component {
     return (
       <div className="App">
         <h1 style={{marginLeft: "20px"}}>CS 450 Project Dashboard</h1>
-        <div className="visualizations">
+        <div className="visualizations" style={{display: 'flex', flexWrap: 'wrap', gap: '20px'}}>
           <Scatterplot1 data={this.state.data} width={500} height={300}></Scatterplot1>
           <StackedBarchart data={this.state.data} width={700} height={450}></StackedBarchart>
           <Scatterplot3 data={this.state.data} width={600} height={450}></Scatterplot3>
           <LineChart data={this.state.data} width={500} height={300}></LineChart>
+          <BoxWhisker data={this.state.data} width={500} height={300}></BoxWhisker>
         </div>
       </div>
     );

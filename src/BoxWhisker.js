@@ -154,7 +154,7 @@ class BoxWhisker extends Component {
       .attr('stroke', 'black')
       .attr('stroke-width', 2);
 
-    const uniqueYears = ['University Year', ...new Set(this.props.data.map(d => d.University_Year))];
+    const uniqueYears = ['University Year', ...[ ...new Set(this.props.data.map(d => d.University_Year))].sort()];
     d3.select(this.refs.dropdownContainer).selectAll("select").data([0]).join(
       enter => {
         const select = enter.append("select");

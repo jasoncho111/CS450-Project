@@ -27,7 +27,7 @@ class StackedBarchart extends Component{
     data = data.map(d => {return {Caffeine_Intake: d.Caffeine_Intake, Age: d.Age, Gender: d.Gender}})
     console.log("Data", data)
   
-    const margin = { top: 50, right: 150, bottom: 50, left: 50 };
+    const margin = { top: 30, right: 100, bottom: 50, left: 50 };
     const width = this.props.width;
     const height = this.props.height;
 
@@ -67,7 +67,7 @@ class StackedBarchart extends Component{
     svg.selectAll(".title").data([0]).join("text").attr("class", "title").attr("text-anchor", "middle").attr("transform", `translate(${margin.left + graph_width/2}, ${margin.top/2})`).text("Number of People vs. Caffeine Intake");
 
     //create legend
-    var colors = {Male: "#0000ff", Female: "#ff0000", Other: "#69b3a2"}
+    var colors = {Male: "#2986cc", Female: "#f90046", Other: "#69b3a2"}
     var squareSize = 24;
     var legend_g = svg.selectAll(".legend").data([0]).join("g").attr("class", "legend").attr("transform", `translate(${width - margin.right + 20}, ${margin.top})`);
     var makeLegendLine = (key, sy) => {

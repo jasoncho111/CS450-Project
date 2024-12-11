@@ -142,7 +142,7 @@ class BoxWhisker extends Component {
       .attr('y', d => y(d.stats.q3))
       .attr('width', boxWidth)
       .attr('height', d => Math.max(y(d.stats.q1)-y(d.stats.q3),0))
-      .attr('fill', '#69b3a2')
+      .attr('fill', '#75528d')
       .attr('stroke', 'black');
 
     boxGroups.append('line')

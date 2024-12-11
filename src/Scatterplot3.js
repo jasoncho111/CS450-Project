@@ -40,12 +40,12 @@ class Scatterplot3 extends Component {
     svg.selectAll(".title").data([0]).join("text").attr("class", "title").attr("transform", `translate(${margin.left + graph_width/2}, ${margin.top/2})`).attr("text-anchor", "middle").attr("dominant-baseline", "middle").text("Sleep Quality vs. Sleep Duration")
 
     //join data
-    graph.selectAll("circle").data(filteredData).join("circle").attr("cx", d => xScale(d.Sleep_Duration)).attr("cy", d => yScale(d.Sleep_Quality)).attr("r", 4).attr("fill", "lightblue");
+    graph.selectAll("circle").data(filteredData).join("circle").attr("cx", d => xScale(d.Sleep_Duration)).attr("cy", d => yScale(d.Sleep_Quality)).attr("r", 4).attr("fill", "#404040");
   }
 
   render() {
     return (
-      <div className="scatterplot3">
+      <div className="scatterplot3" style={{marginTop: "95px"}}>
         <svg className="my_svg"></svg>
       </div>
     );

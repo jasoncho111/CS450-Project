@@ -57,7 +57,7 @@ class LineChart extends Component {
       .attr("cx", (d) => xScale(d.Screen_Time)) 
       .attr("cy", (d) => yScale(d.Physical_Activity))  
       .attr("r", 4) 
-      .attr("fill", "steelblue"); 
+      .attr("fill", "#404040"); 
   
     // Create line function
     var line = d3.line()
@@ -71,7 +71,7 @@ class LineChart extends Component {
       .attr("class", "line")
       .attr("d", line)  
       .attr("fill", "none")
-      .attr("stroke", "steelblue")
+      .attr("stroke", "black")
       .attr("stroke-width", 2);
   }
   

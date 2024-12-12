@@ -1,11 +1,12 @@
 import './App.css';
 import React, {Component} from 'react';
-import Papa from 'papaparse';
+import Papa from 'papaparse'
 import Scatterplot3 from './Scatterplot3';
 import Scatterplot1 from './Scatterplot1';
 import StackedBarchart from './StackedBarchart';
 import LineChart from './LineChart';
 import BoxWhisker from './BoxWhisker';
+import FileUpload from './FileUpload';
 
 class App extends Component {
   constructor(props) {
@@ -61,10 +62,15 @@ class App extends Component {
     this.readCsv()
   }
 
+  set_data = (csvData) => {
+    this.setState({data: csvData});
+  }
+
   render() {
     return (
       <div className="App">
         <h1 style={{marginLeft: "20px"}}>CS 450 Project Dashboard</h1>
+        <FileUpload set_data={this.set_data}></FileUpload>
         <div className="visualizations" style={{display: 'flex', flexWrap: 'wrap', gap: '20px'}}>
           <Scatterplot1 data={this.state.data} width={550} height={450}></Scatterplot1>
           <StackedBarchart data={this.state.data} width={700} height={435}></StackedBarchart>

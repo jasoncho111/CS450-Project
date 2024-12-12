@@ -25,7 +25,6 @@ class StackedBarchart extends Component{
   renderChart = () => {
     var data = this.props.data.filter(d => d.Age >= this.state.ageRange[0] && d.Age <= this.state.ageRange[1]);
     data = data.map(d => {return {Caffeine_Intake: d.Caffeine_Intake, Age: d.Age, Gender: d.Gender}})
-    console.log("Data", data)
   
     const margin = { top: 30, right: 100, bottom: 50, left: 50 };
     const width = this.props.width;
@@ -52,7 +51,6 @@ class StackedBarchart extends Component{
     data.forEach(d => {
         comp[d.Caffeine_Intake][d.Gender] += 1;
     })
-    console.log(comp);
 
     var xScale = d3.scaleBand().domain(comp.map(d => d.Caffeine_Intake)).range([0, graph_width]).padding(0.2);
     var maxSum = d3.max(comp, d => d.Male + d.Female + d.Other);
@@ -83,7 +81,6 @@ class StackedBarchart extends Component{
     //create bars
     var stackGen = d3.stack().keys(["Male", "Female", "Other"]);
     var stackSeries = stackGen(comp);
-    console.log(stackSeries);
     var keys = Object.keys(colors);
     keys.forEach(k => {
         graph.selectAll(`.${k}_rect`).data(stackSeries[keys.indexOf(k)]).join("rect").attr("class", `${k}_rect`).attr("x", d => xScale(d.data.Caffeine_Intake)).attr("y", d => yScale(d[1])).attr("width", xScale.bandwidth()).attr("height", d => yScale(d[0]) - yScale(d[1])).attr("fill", colors[k])

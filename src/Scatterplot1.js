@@ -29,7 +29,7 @@ class Scatterplot1 extends Component{
     const h = this.props.height - margin.top - margin.bottom;
   
     const container = d3.select(".scatterplot1").select(".Scatterplot_svg")
-      .attr("width", w + margin.left + margin.right)
+      .attr("width", w + margin.left + margin.right + 100)
       .attr("height", h + margin.top + margin.bottom)
       .select(".g_1")
       .attr("transform", `translate(${margin.left}, ${margin.top})`);
@@ -126,7 +126,41 @@ class Scatterplot1 extends Component{
       gRange.selectAll('.tick text').style('opacity', 1);
 
       d3.select(".scatterplot1").select(".slider-range").selectAll(".slider_label").data([0]).join("text").attr("class", "slider_label").attr("transform", "translate(30, 30)").attr("dominant-baseline", "middle").text("Age:")
-  }
+      
+      const legend = container.append("g")
+      .attr("class", "legend")
+      .attr("transform", `translate(${w+margin.right}, 10)`);
+
+      const legendData = [
+        { color: "#69b3a2", label: "Other"},
+        { color: "#f90046", label: "Female"},
+        { color: "#2986cc", label: "Male"}
+      ];
+      legend.selectAll(".legend-item")
+      .data(legendData)
+      .join("g")
+      .attr("class", "legend-item")
+      .attr("transform", (d, i) => `translate(0, ${i * 32})`) // Space items vertically
+      .each(function (d) {
+        const legendItem = d3.select(this);
+    
+        // Add color indicator (circle)
+        legendItem.append("rect")
+          .attr("width", 24) // Width of the rectangle
+          .attr("height", 24) // Height of the rectangle
+          .attr("fill", d.color)
+          .attr("x", -15) // Position of the rectangle
+          .attr("y", -10);
+    
+        // Add label text
+        legendItem.append("text")
+          .text(d.label)
+          .attr("x", 15)  // Position text to the right of the rectangle
+          .attr("y", 5)   // Align text vertically with the rectangle
+          .attr("font-size", "12px")
+          .attr("font-weight", "none")
+          .attr("fill", "#000");
+      })};
   
   render() {
     return (
